@@ -34,10 +34,9 @@
     ```
 
 *    #### Update Mandatory Variables in inventory.ini file
-    ```
     # Update inventory.ini with IP addresses of privx, privxdb and redis server.
     # PostgreSQL DB and redis can be configured on same server if so update same ip againts privdb and redis. 
-    ```
+
 
 
 *   #### Update Optional Variables in inventory.ini file (if required)
