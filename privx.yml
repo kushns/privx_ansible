@@ -1,0 +1,9 @@
+---
+- name: "install_privx"
+  hosts: privx
+  remote_user: "{{ REMOTE_USER | default('root') }}"
+  become: "{{ BECOME | default('no') }}"
+
+  roles:
+  - install_privx
+  - configure_privx

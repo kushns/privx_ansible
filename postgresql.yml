@@ -1,0 +1,8 @@
+---
+- name: "install_postgresql"
+  hosts: privxdb
+  remote_user: "{{ REMOTE_USER | default('root') }}"
+  become: "{{ BECOME | default('no') }}"
+
+  roles:
+  - install_postgresql

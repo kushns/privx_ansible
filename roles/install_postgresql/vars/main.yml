@@ -1,0 +1,6 @@
+---
+POSTGRESQL_PACKAGE: "postgresql{{ PGSQL_VERSION }}"
+POSTGRESQL_SERVICE: "postgresql-{{ PGSQL_VERSION }}"
+PGSQL_PATH: "/var/lib/pgsql/{{ PGSQL_VERSION }}/data"
+POSTGRESQL_CONFIG: /var/lib/pgsql/{{ PGSQL_VERSION }}/data/postgresql.conf
+PG_HBA_CONFIG: /var/lib/pgsql/{{ PGSQL_VERSION }}/data/pg_hba.conf

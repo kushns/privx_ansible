@@ -1,0 +1,6 @@
+---
+- import_playbook: postgresql.yml
+
+- import_playbook: redis.yml
+
+- import_playbook: privx.yml

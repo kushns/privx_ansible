@@ -1,0 +1,29 @@
+---
+- name: Install epel and yum-utils
+  yum:
+    name: ['epel-release', 'yum-utils']
+    state: installed
+
+- name: Install redis repository
+  yum:
+    name: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+    state: present
+
+- name: Install redis
+  yum:
+    name: redis
+    state: installed
+
+- name: Update redis configuration
+  lineinfile:
+    path: "{{ REDIS_CONFIG }}"
+    regexp: "{{ item.regex }}"
+    line: "{{ item.line }}"
+  with_items:
+    - { regex: "^bind 127.0.0.1", line: "bind 127.0.0.1 {{ ansible_default_ipv4.address }}" }
+
+- name: Start and enable redis service
+  service:
+    name: redis
+    state: started
+    enabled: yes
