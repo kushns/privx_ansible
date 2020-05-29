@@ -15,9 +15,8 @@
   register: init_status
 
 - name: Initialize database
-  shell: "/usr/pgsql-{{ PGSQL_VERSION }}/bin/postgresql-{{ PGSQL_VERSION }}-setup initdb"
-  when: init_status.stat.exists == False
-  notify:
+  command: "/usr/pgsql-{{ PGSQL_VERSION }}/bin/postgresql-{{ PGSQL_VERSION }}-setup initdb"
+  when: not init_status.stat.exists
 
 - name: Start and enable postgresql service
   service:
@@ -71,11 +70,11 @@
     regexp: "{{ item.regex }}"
     line: "{{ item.line }}"
   with_items:
-    - { regex: "^#listen_addresses", line: "listen_addresses = \'*\'" }
+    - { regex: "^#listen_addresses", line: "listen_addresses = '*'" }
     - { regex: "^max_connections = 100", line: "max_connections = 1000" }
     - { regex: "^#ssl = off", line: "ssl = on" }
-    - { regex: "#ssl_cert_file", line: "ssl_cert_file = \'server.crt\'"}
-    - { regex: "#ssl_key_file", line: "ssl_key_file = \'server.key\'"}
+    - { regex: "#ssl_cert_file", line: "ssl_cert_file = 'server.crt'"}
+    - { regex: "#ssl_key_file", line: "ssl_key_file = 'server.key'"}
 
 - name: Grant access from privx ip
   postgresql_pg_hba:

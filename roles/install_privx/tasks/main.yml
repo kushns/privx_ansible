@@ -3,11 +3,12 @@
   yum:
     name: epel-release
     state: installed
-    
-- rpm_key:
+
+- name: install ssh product rpm key
+  rpm_key:
     state: present
     key: https://product-repository.ssh.com/info.fi-ssh.com-pubkey.asc
-    
+
 - name: Add SSH Product REPO
   yum_repository:
     name: ssh-products

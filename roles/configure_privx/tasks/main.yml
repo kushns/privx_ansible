@@ -9,13 +9,11 @@
     src: config.j2
     dest: "{{ CONFIGURATION_SCRIPT }}"
     mode: 0700
-  when: keyvault.stat.exists == False
+  when: not keyvault.stat.exists
 
 - name: Execute privx configuration script
-  shell: "{{ CONFIGURATION_SCRIPT }}"
-  args:
-    executable: /bin/bash
-  when: keyvault.stat.exists == False
+  command: "{{ CONFIGURATION_SCRIPT }}"
+  when: not keyvault.stat.exists
 
 - name: Delete privx configuraiton script
   file:
