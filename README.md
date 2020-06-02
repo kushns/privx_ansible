@@ -1,3 +1,5 @@
+![Ansible code validation](https://github.com/kushns/privx_ansible/workflows/Ansible%20code%20validation/badge.svg)
+
 # PrivX-Installation-Centos
 
 *This repository can used to install ***PrivX*** with **External PostgreSQL and Redis** on ***Centos hosts****
