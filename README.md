@@ -39,6 +39,19 @@
     # Update inventory.ini with IP addresses of privx, privxdb and redis servers.
     # One or more ip addresses can be specified under privx host group if multinode setup required.  
     # PostgreSQL DB and redis can be configured on same server if so update same ip againts privdb and redis. 
+    # host group for PrivX servers ip (one or more)
+    
+    [privx]
+    192.168.56.11
+    192.168.56.12
+
+    # host group for PostgreSQL DB server ip
+    [privxdb]
+    192.168.56.10
+
+    # host group for redis server ip
+    [redis]
+    192.168.56.10
 
 
 
