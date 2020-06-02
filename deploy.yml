@@ -1,6 +1,51 @@
 ---
-- import_playbook: postgresql.yml
+- name: Install PostgreSQL
+  hosts: privxdb
+  remote_user: "{{ REMOTE_USER | default('root') }}"
+  become: "{{ BECOME | default('no') }}"
 
-- import_playbook: redis.yml
+  roles:
+  - install_postgresql
 
-- import_playbook: privx.yml
+
+- name: Install Redis
+  hosts: redis
+  remote_user: "{{ REMOTE_USER | default('root') }}"
+  become: "{{ BECOME | default('no') }}"
+
+  roles:
+  - install_redis
+
+
+- name: Install and configure privx
+  hosts: privx
+  remote_user: "{{ REMOTE_USER | default('root') }}"
+  become: "{{ BECOME | default('no') }}"
+
+  tasks:
+    - name: Install Privx
+      import_role:
+        name: install_privx
+
+    - name: Configure PrivX
+      import_role:
+        name: configure_privx
+      when: inventory_hostname == ansible_play_hosts_all[0]
+
+    - name: Collect service facts
+      service_facts:
+      when: inventory_hostname != ansible_play_hosts_all[0]
+
+    - name: Backup PrivX config
+      import_role:
+        name: backup_privx
+      when:
+      - inventory_hostname == ansible_play_hosts_all[0]
+      - ansible_play_hosts_all|length  > 1
+
+    - name: Configure addtional PrivX servers
+      import_role:
+        name: configure_additional_prix
+      when:
+      - inventory_hostname != ansible_play_hosts_all[0]
+      - ansible_facts.services['privx.service']['state'] == "unknown"

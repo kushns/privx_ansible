@@ -34,7 +34,8 @@
     ```
 
 *    #### Update Mandatory Variables in inventory.ini file
-    # Update inventory.ini with IP addresses of privx, privxdb and redis server.
+    # Update inventory.ini with IP addresses of privx, privxdb and redis servers.
+    # One or more ip addresses can be specified under privx host group if multinode setup required.  
     # PostgreSQL DB and redis can be configured on same server if so update same ip againts privdb and redis. 
 
 
@@ -42,7 +43,7 @@
 *   #### Update Optional Variables in inventory.ini file (if required)
     ```
     # Postgresql version (Code tested for versions 10, 11 or 12)
-    PGSQL_VERSION=10
+    PGSQL_VERSION=12
     
     # PostgreSQL database user name
     PRIVX_DATABASE_USERNAME=privx
