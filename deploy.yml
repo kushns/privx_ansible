@@ -32,8 +32,10 @@
         name: configure_privx
       when: inventory_hostname == ansible_play_hosts_all[0]
 
-    - name: Collect service facts
-      service_facts:
+    - name: Validate keyvault directory
+      stat:
+        path: /opt/privx/keyvault
+      register: keyvault
       when: inventory_hostname != ansible_play_hosts_all[0]
 
     - name: Backup PrivX config
@@ -48,4 +50,4 @@
         name: configure_additional_prix
       when:
       - inventory_hostname != ansible_play_hosts_all[0]
-      - ansible_facts.services['privx.service']['state'] == "unknown"
+      - keyvault.stat.exists == false
