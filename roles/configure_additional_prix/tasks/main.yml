@@ -8,11 +8,6 @@
   unarchive:
     src: "/tmp/{{ ansible_play_hosts_all[0] }}{{ BACKUP_FILE }}"
     dest: "{{ BACKUP_LOCATION }}"
-
-- name: Restore backup
-  command: "{{ RESTORE_SCRIPT }} {{ BACKUP_LOCATION }}"
-  when: ansible_facts.services['privx.service']['state'] == "unknown"
-
-- name: Run postinstall script
-  command: "{{ POST_INSTALL_SCRIPT }}"
-  when: ansible_facts.services['privx.service']['state'] == "unknown"
+  notify:
+    - Restore backup
+    - Run postinstall script
