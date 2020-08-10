@@ -11,8 +11,6 @@
 
 - name: Restore backup
   command: "{{ RESTORE_SCRIPT }} {{ BACKUP_LOCATION }}"
-  when: ansible_facts.services['privx.service']['state'] == "unknown"
 
 - name: Run postinstall script
   command: "{{ POST_INSTALL_SCRIPT }}"
-  when: ansible_facts.services['privx.service']['state'] == "unknown"
