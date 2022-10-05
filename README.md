@@ -49,10 +49,6 @@
      # host group for PostgreSQL DB server ip
      [privxdb]
      192.168.56.10
-
-     # host group for redis server ip
-     [redis]
-     192.168.56.10
      ```
 
 *   #### Update Optional Variables in inventory.ini file (if required)
@@ -100,6 +96,4 @@
     
     
 ## Next Steps
- * [Getting Started with PrivX](https://help.ssh.com/support/solutions/articles/36000194728-getting-started-with-privx)
- * Learn more about [PrivX Users and Permissions](https://help.ssh.com/support/solutions/articles/36000194730-privx-users-and-permissions)
- * Check [Online Administrator Manual](https://help.ssh.com/support/solutions/folders/36000185818)
+ * [Getting Started with PrivX](https://privx.docs.ssh.com/docs)
