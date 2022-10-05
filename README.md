@@ -2,7 +2,7 @@
 
 # PrivX-Installation-Centos
 
-*This repository can used to install ***PrivX*** with **External PostgreSQL and Redis** on ***Centos hosts****
+*This repository can used to install ***PrivX*** with **External PostgreSQL and Redis** on ***Centos7 hosts****
  
 
 ## Pre-requisites
