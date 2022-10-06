@@ -100,6 +100,4 @@
     
     
 ## Next Steps
- * [Getting Started with PrivX](https://help.ssh.com/support/solutions/articles/36000194728-getting-started-with-privx)
- * Learn more about [PrivX Users and Permissions](https://help.ssh.com/support/solutions/articles/36000194730-privx-users-and-permissions)
- * Check [Online Administrator Manual](https://help.ssh.com/support/solutions/folders/36000185818)
+ * [Getting Started with PrivX](https://privx.docs.ssh.com/docs)
