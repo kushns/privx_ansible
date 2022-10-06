@@ -19,8 +19,8 @@ jobs:
       with:
         targets: "*.yml"
         override-deps: |
-          ansible==2.9.9
-          ansible-lint==4.2.0
-        args: ""
+          ansible==2.9.12
+          ansible-lint==5.4.0
+        args: "-x var-naming"
 
   
