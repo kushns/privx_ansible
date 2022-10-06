@@ -21,6 +21,6 @@ jobs:
         override-deps: |
           ansible==2.9.12
           ansible-lint==5.4.0
-        args: "-x var-naming"
+        args: ""
 
   
