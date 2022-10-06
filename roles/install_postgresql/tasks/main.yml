@@ -1,25 +1,25 @@
 ---
 - name: Install postgresql repository
-  yum:
+  ansible.builtin.yum:
     name: https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
     state: present
 
 - name: Install postgresql
-  yum:
+  ansible.builtin.yum:
     name: ['{{ POSTGRESQL_PACKAGE }}-server', 'python-psycopg2', 'python2-cryptography']
     state: installed
 
 - name: Check database already initialized
-  stat:
+  ansible.builtin.stat:
     path: "{{ PGSQL_PATH }}/PG_VERSION"
   register: init_status
 
 - name: Initialize database
-  command: "/usr/pgsql-{{ PGSQL_VERSION }}/bin/postgresql-{{ PGSQL_VERSION }}-setup initdb"
+  ansible.builtin.command: "/usr/pgsql-{{ PGSQL_VERSION }}/bin/postgresql-{{ PGSQL_VERSION }}-setup initdb"
   when: not init_status.stat.exists
 
 - name: Start and enable postgresql service
-  service:
+  ansible.builtin.service:
     name: "{{ POSTGRESQL_SERVICE }}"
     state: started
     enabled: yes
@@ -28,25 +28,25 @@
   become_user: postgres
   become: yes
   no_log: True
-  postgresql_user:
+  community.general.postgresql_user:
     name: "{{ PRIVX_DATABASE_USERNAME }}"
     password: "{{ PRIVX_DATABASE_PASSWORD }}"
     role_attr_flags: CREATEDB
 
 - name: Install openssl
-  yum:
+  ansible.builtin.yum:
     name: openssl
     state: present
 
 - name: Generate an OpenSSL private key
-  openssl_privatekey:
+  community.crypto.openssl_privatekey:
     path: "{{ PGSQL_PATH }}/server.key"
     owner: postgres
     group: postgres
     mode: 0600
 
 - name: Generate an OpenSSL Certificate Signing Request
-  openssl_csr:
+    community.crypto.openssl_csr:
     path: "{{ PGSQL_PATH }}/server.csr"
     privatekey_path: "{{ PGSQL_PATH }}/server.key"
     common_name: "{{ ansible_fqdn }}"
@@ -55,7 +55,7 @@
     mode: 0600
 
 - name: Generate an OpenSSL certificate
-  openssl_certificate:
+    community.crypto.openssl_certificate:
     path: "{{ PGSQL_PATH }}/server.crt"
     privatekey_path: "{{ PGSQL_PATH }}/server.key"
     csr_path: "{{ PGSQL_PATH }}/server.csr"
@@ -64,8 +64,8 @@
     group: postgres
     mode: 0644
 
-- name: update listen_addresses
-  lineinfile:
+- name: Update listen_addresses
+  ansible.builtin.lineinfile:
     path: "{{ POSTGRESQL_CONFIG }}"
     regexp: "{{ item.regex }}"
     line: "{{ item.line }}"
@@ -77,7 +77,7 @@
     - { regex: "#ssl_key_file", line: "ssl_key_file = 'server.key'"}
 
 - name: Grant access from privx ip
-  postgresql_pg_hba:
+  community.general.postgresql_pg_hba:
     dest: "{{ PG_HBA_CONFIG }}"
     contype: host
     source: "{{ item }}"
