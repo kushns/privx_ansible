@@ -2,12 +2,12 @@
 
 # PrivX-Installation-Centos
 
-*This repository can used to install ***PrivX*** with **External PostgreSQL and Redis** on ***Centos hosts****
+*This repository can used to install ***PrivX*** with **External PostgreSQL** on ***Centos7 hosts****
  
 
 ## Pre-requisites
 
-1.  Centos hosts (2 or more) 
+1.  Centos7 hosts (2 or more) 
 1.  Install [Git](https://git-scm.com/downloads)
 1.  Install [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-rhel-centos-or-fedora)
 1.  **DNS Lookup**: Make sure that hosts can resolve/ping each other by name(update /etc/hosts file if required)

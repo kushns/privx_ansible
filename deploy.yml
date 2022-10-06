@@ -42,12 +42,12 @@
       import_role:
         name: backup_privx
       when:
-      - inventory_hostname == ansible_play_hosts_all[0]
-      - ansible_play_hosts_all|length  > 1
+        - inventory_hostname == ansible_play_hosts_all[0]
+        - ansible_play_hosts_all|length  > 1
 
     - name: Configure addtional PrivX servers
       import_role:
         name: configure_additional_prix
       when:
-      - inventory_hostname != ansible_play_hosts_all[0]
-      - not keyvault.stat.exists
+        - inventory_hostname != ansible_play_hosts_all[0]
+        - not keyvault.stat.exists

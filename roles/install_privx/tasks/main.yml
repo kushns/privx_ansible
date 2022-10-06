@@ -1,16 +1,16 @@
 ---
-- name: install_epel-release
-  yum:
+- name: Install_epel-release
+  ansible.builtin.yum:
     name: epel-release
     state: installed
 
-- name: install ssh product rpm key
-  rpm_key:
+- name: Install ssh product rpm key
+  ansible.builtin.rpm_key:
     state: present
     key: https://product-repository.ssh.com/info.fi-ssh.com-pubkey.asc
 
 - name: Add SSH Product REPO
-  yum_repository:
+  ansible.builtin.yum_repository:
     name: ssh-products
     description: SSH Product Repository - $basearch
     baseurl: https://product-repository.ssh.com/$basearch/
@@ -19,7 +19,7 @@
     gpgcheck: yes
     file: ssh-products.repo
 
-- name: install_privx
-  yum:
+- name: Install_privx
+  ansible.builtin.yum:
     name: PrivX
     state: installed
