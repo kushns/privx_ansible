@@ -19,7 +19,7 @@
     gpgcheck: yes
     file: ssh-products.repo
 
-- name: install_privx
+- name: Install_privx
   ansible.builtin.yum:
     name: PrivX
     state: installed
