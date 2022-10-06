@@ -18,8 +18,10 @@
     path:
     - "{{ latest_backup['path'] }}/*"
     dest: "{{ BACKUP_FILE }}"
+    mode: 0644
 
 - name: Fetch backup
   fetch:
     src: "{{ BACKUP_FILE }}"
     dest: /tmp
+

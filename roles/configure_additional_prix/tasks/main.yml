@@ -1,13 +1,23 @@
 ---
+- name: register privx version
+  command: /opt/privx/bin/auth --version
+  register: p_version
+  when: p_version is undefined
+
+- name: Get latest backup
+  set_fact:
+    privx_version: "{{ p_version.stdout_lines[0] }}"
+
 - name: Create directory
   file:
-    path: "{{ BACKUP_LOCATION }}"
+    path: "{{ BACKUP_LOCATION }}_{{ privx_version }}"
     state: directory
+    mode: 0755
 
 - name: Copy and uncompress backup
   unarchive:
     src: "/tmp/{{ ansible_play_hosts_all[0] }}{{ BACKUP_FILE }}"
-    dest: "{{ BACKUP_LOCATION }}"
+    dest: "{{ BACKUP_LOCATION }}_{{ privx_version }}"
   notify:
     - Restore backup
     - Run postinstall script
