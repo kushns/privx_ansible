@@ -1,6 +1,9 @@
 ---
 - name: Register privx version
-  command: /opt/privx/bin/auth --version
+  ansible.builtin.command:
+    argv:
+      - /opt/privx/bin/auth
+      - --version
   register: p_version
   when: p_version is undefined
 

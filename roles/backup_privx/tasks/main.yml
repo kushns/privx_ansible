@@ -16,7 +16,7 @@
 - name: Compress backup directory
   community.general.archive:
     path:
-    - "{{ latest_backup['path'] }}/*"
+      - "{{ latest_backup['path'] }}/*"
     dest: "{{ BACKUP_FILE }}"
     mode: 0644
 
@@ -24,4 +24,3 @@
   ansible.builtin.fetc:
     src: "{{ BACKUP_FILE }}"
     dest: /tmp
-
