@@ -49,10 +49,6 @@
      # host group for PostgreSQL DB server ip
      [privxdb]
      192.168.56.10
-
-     # host group for redis server ip
-     [redis]
-     192.168.56.10
      ```
 
 *   #### Update Optional Variables in inventory.ini file (if required)
