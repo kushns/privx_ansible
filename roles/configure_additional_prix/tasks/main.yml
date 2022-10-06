@@ -3,6 +3,7 @@
   file:
     path: "{{ BACKUP_LOCATION }}"
     state: directory
+    mode: 0755
 
 - name: Copy and uncompress backup
   unarchive:
