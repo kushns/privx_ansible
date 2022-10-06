@@ -10,7 +10,7 @@
     key: https://product-repository.ssh.com/info.fi-ssh.com-pubkey.asc
 
 - name: Add SSH Product REPO
-    ansible.builtin.yum_repository:
+  ansible.builtin.yum_repository:
     name: ssh-products
     description: SSH Product Repository - $basearch
     baseurl: https://product-repository.ssh.com/$basearch/

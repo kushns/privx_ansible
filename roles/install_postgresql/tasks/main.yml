@@ -46,7 +46,7 @@
     mode: 0600
 
 - name: Generate an OpenSSL Certificate Signing Request
-    community.crypto.openssl_csr:
+  community.crypto.openssl_csr:
     path: "{{ PGSQL_PATH }}/server.csr"
     privatekey_path: "{{ PGSQL_PATH }}/server.key"
     common_name: "{{ ansible_fqdn }}"
@@ -55,7 +55,7 @@
     mode: 0600
 
 - name: Generate an OpenSSL certificate
-    community.crypto.openssl_certificate:
+  community.crypto.openssl_certificate:
     path: "{{ PGSQL_PATH }}/server.crt"
     privatekey_path: "{{ PGSQL_PATH }}/server.key"
     csr_path: "{{ PGSQL_PATH }}/server.csr"
