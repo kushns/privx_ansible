@@ -21,6 +21,6 @@
     mode: 0644
 
 - name: Fetch backup
-  ansible.builtin.fetc:
+  ansible.builtin.fetch:
     src: "{{ BACKUP_FILE }}"
     dest: /tmp
