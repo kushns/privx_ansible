@@ -22,9 +22,9 @@
 
 *   ***Copy key to target servers***
 
-    `$ cat ~/.ssh/id_rsa.pub | ssh   root@192.168.56.10  "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys"`
+    `$ cat ~/.ssh/id_rsa.pub | ssh root@192.168.56.10  "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys"`
     
-    `$ cat ~/.ssh/id_rsa.pub | ssh   root@192.168.56.11  "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys"`
+    `$ cat ~/.ssh/id_rsa.pub | ssh root@192.168.56.11  "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys"`
 
 
 ## Deployment
@@ -37,9 +37,8 @@
 
 *    #### Update Mandatory Variables in inventory.ini file
      ```
-     # Update inventory.ini with IP addresses of privx, privxdb and redis servers.
+     # Update inventory.ini with IP addresses of privx, privxdb servers.
      # One or more ip addresses can be specified under privx host group if multinode setup required.  
-     # PostgreSQL DB and redis can be configured on same server if so update same ip againts privdb and redis. 
      
      # host group for PrivX servers ip (one or more)
      [privx]
