@@ -8,15 +8,6 @@
   - install_postgresql
 
 
-- name: Install Redis
-  hosts: redis
-  remote_user: "{{ REMOTE_USER | default('root') }}"
-  become: "{{ BECOME | default('no') }}"
-
-  roles:
-  - install_redis
-
-
 - name: Install and configure privx
   hosts: privx
   remote_user: "{{ REMOTE_USER | default('root') }}"
