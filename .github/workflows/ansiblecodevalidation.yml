@@ -19,7 +19,7 @@ jobs:
       with:
         targets: "*.yml"
         override-deps: |
-          ansible==2.9.12
+          ansible==2.11.12
           ansible-lint==5.4.0
         args: ""
 
