@@ -1,8 +1,8 @@
 ![Ansible code validation](https://github.com/kushns/privx_ansible/workflows/Ansible%20code%20validation/badge.svg)
 
-# PrivX-Installation-Centos
+# PrivX-Installation-Rocky-Linux
 
-*This repository can used to install ***PrivX*** with **External PostgreSQL** on ***Centos7 hosts****
+*This repository can used to install ***PrivX*** with **External PostgreSQL** on ***Rocky Linux 8 hosts****
  
 
 ## Pre-requisites
@@ -52,8 +52,8 @@
 
 *   #### Update Optional Variables in inventory.ini file (if required)
     ```
-    # Postgresql version (Code tested for versions 10, 11 or 12)
-    PGSQL_VERSION=12
+    # Postgresql version (Code tested for versions 15)
+    PGSQL_VERSION=15
     
     # PostgreSQL database user name
     PRIVX_DATABASE_USERNAME=privx
