@@ -3,4 +3,6 @@
   ansible.builtin.command: "{{ RESTORE_SCRIPT }} {{ BACKUP_LOCATION }}_{{ privx_version }}"
 
 - name: Run postinstall script
-  ansible.builtin.command: "{{ POST_INSTALL_SCRIPT }}"
+  ansible.builtin.shell: |
+    export PRIVX_SKIP_DB_VERSION_CHECK=true
+    "{{ POST_INSTALL_SCRIPT }}"

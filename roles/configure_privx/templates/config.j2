@@ -12,9 +12,11 @@ export PRIVX_DATABASE_PASSWORD="{{ PRIVX_DATABASE_PASSWORD }}"
 export PRIVX_POSTGRES_ADDRESS="{% for host in groups['privxdb'] %}{{ host }}{% endfor %}"
 export PRIVX_POSTGRES_PORT=5432
 export DB_EXTERNAL_CREATE_PSQL_USER=false
-export DB_EXTERNAL_CREATE_PSQL_DATABASE=true
+export DB_EXTERNAL_CREATE_PSQL_DATABASE=false
 export PRIVX_DATABASE_SSLMODE=require
 export PRIVX_NOTIFICATION_BACKEND=db
 export PRIVX_KEYVAULT_PKCS11_ENABLE=0
 export PRIVX_NTP_SERVER="pool.ntp.org"
+export PRIVX_SKIP_DB_VERSION_CHECK=true
+export PRIVX_POSTGRES_PASSWORD=""
 /opt/privx/scripts/postinstall.sh

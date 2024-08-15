@@ -1,12 +1,16 @@
 ---
 - name: Install postgresql repository
   ansible.builtin.yum:
-    name: https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
-    state: present
+    name: https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+    state: installed
+    disable_gpg_check: true
+
+- name: Disable built-in PostgreSQL Module
+  ansible.builtin.command: "dnf -qy module disable postgresql"
 
 - name: Install postgresql
-  ansible.builtin.yum:
-    name: ['{{ POSTGRESQL_PACKAGE }}-server', 'python-psycopg2', 'python2-cryptography']
+  ansible.builtin.dnf:
+    name: ['{{ POSTGRESQL_PACKAGE }}-server', python3-psycopg2]
     state: installed
 
 - name: Check database already initialized
@@ -28,13 +32,20 @@
   become_user: postgres
   become: yes
   no_log: True
-  community.general.postgresql_user:
+  community.postgresql.postgresql_user:
     name: "{{ PRIVX_DATABASE_USERNAME }}"
     password: "{{ PRIVX_DATABASE_PASSWORD }}"
     role_attr_flags: CREATEDB
 
+- name: Create database
+  become_user: postgres
+  become: yes
+  community.postgresql.postgresql_db:
+    name: "{{ PRIVX_DATABASE_NAME }}"
+    owner: "{{ PRIVX_DATABASE_USERNAME }}"
+
 - name: Install openssl
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: openssl
     state: present
 
@@ -55,7 +66,7 @@
     mode: 0600
 
 - name: Generate an OpenSSL certificate
-  community.crypto.openssl_certificate:
+  community.crypto.x509_certificate:
     path: "{{ PGSQL_PATH }}/server.crt"
     privatekey_path: "{{ PGSQL_PATH }}/server.key"
     csr_path: "{{ PGSQL_PATH }}/server.csr"

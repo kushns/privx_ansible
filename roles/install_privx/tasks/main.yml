@@ -1,6 +1,6 @@
 ---
 - name: Install_epel-release
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: epel-release
     state: installed
 
@@ -12,12 +12,17 @@
 - name: Add SSH Product REPO
   ansible.builtin.yum_repository:
     name: ssh-products
-    description: SSH Product Repository - $basearch
-    baseurl: https://product-repository.ssh.com/$basearch/
+    description: SSH Product Repository RHEL 8 - $basearch
+    baseurl: https://product-repository.ssh.com/rhel8/$basearch/
     enabled: yes
     gpgkey: https://product-repository.ssh.com/info.fi-ssh.com-pubkey.asc
     gpgcheck: yes
     file: ssh-products.repo
+
+- name: Install firewalld and postgresql
+  ansible.builtin.yum:
+    name: [ firewalld, postgresql ]
+    state: installed
 
 - name: Install_privx
   ansible.builtin.yum:
