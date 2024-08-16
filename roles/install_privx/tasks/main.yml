@@ -20,11 +20,11 @@
     file: ssh-products.repo
 
 - name: Install firewalld and postgresql
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: [firewalld, postgresql]
     state: installed
 
 - name: Install_privx
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: PrivX
     state: installed

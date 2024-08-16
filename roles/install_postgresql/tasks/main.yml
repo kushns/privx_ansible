@@ -1,6 +1,6 @@
 ---
 - name: Install postgresql repository
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
     state: installed
     disable_gpg_check: true
