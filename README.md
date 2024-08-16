@@ -78,7 +78,6 @@
     # Uncomment and supply REMOTE_USER value if remote user is not root
     REMOTE_USER=centos
     BECOME=yes
-    
     ```
 *   #### Run deploy.yml playbook to perform installation
     ```
