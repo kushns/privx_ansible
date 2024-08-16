@@ -4,22 +4,21 @@ name: Ansible code validation
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Lint Ansible Playbook
+      - uses: actions/checkout@v2
+      - name: Lint Ansible Playbook
       uses: ansible/ansible-lint-action@main
-      with:
-        targets: "*.yml"
-        override-deps: |
-          ansible==2.15.11
-          ansible-lint==24.7.0
-        args: ""
-
+        with:
+          targets: "*.yml"
+          override-deps: |
+            ansible==2.15.11
+            ansible-lint==24.7.0
+          args: ""
