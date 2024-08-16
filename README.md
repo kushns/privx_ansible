@@ -77,7 +77,8 @@
     # Ansible remote user and become value, default set to root
     # Uncomment and supply REMOTE_USER value if remote user is not root
     REMOTE_USER=centos
-    BECOME=yes 
+    BECOME=yes
+    
     ```
 *   #### Run deploy.yml playbook to perform installation
     ```
@@ -87,7 +88,7 @@
     **Once all the ansible jobs are successful, you can access PrivX GUI on https://<privx_server_hostname_or_IP>**
     
     **RANDOM password can be found in ~/privx_password**
-
+    
     
 *   #### To activate a PrivX license with the online method:
     1. Access the PrivX GUI and navigate to the Settings→License page.
