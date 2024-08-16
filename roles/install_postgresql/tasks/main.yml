@@ -54,7 +54,7 @@
     path: "{{ PGSQL_PATH }}/server.key"
     owner: postgres
     group: postgres
-    mode: 0600
+    mode: "0600"
 
 - name: Generate an OpenSSL Certificate Signing Request
   community.crypto.openssl_csr:
@@ -63,7 +63,7 @@
     common_name: "{{ ansible_fqdn }}"
     owner: postgres
     group: postgres
-    mode: 0600
+    mode: "0600"
 
 - name: Generate an OpenSSL certificate
   community.crypto.x509_certificate:
@@ -73,7 +73,7 @@
     provider: selfsigned
     owner: postgres
     group: postgres
-    mode: 0644
+    mode: "0644"
 
 - name: Update listen_addresses
   ansible.builtin.lineinfile:

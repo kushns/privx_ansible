@@ -21,7 +21,7 @@
 
 - name: Install firewalld and postgresql
   ansible.builtin.yum:
-    name: [ firewalld, postgresql ]
+    name: [firewalld, postgresql]
     state: installed
 
 - name: Install_privx

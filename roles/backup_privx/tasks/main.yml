@@ -18,7 +18,7 @@
     path:
       - "{{ latest_backup['path'] }}/*"
     dest: "{{ BACKUP_FILE }}"
-    mode: 0644
+    mode: "0644"
 
 - name: Fetch backup
   ansible.builtin.fetch:

@@ -5,8 +5,7 @@
   become: "{{ BECOME | default('no') }}"
 
   roles:
-  - install_postgresql
-
+    - install_postgresql
 
 - name: Install and configure privx
   hosts: privx
@@ -15,29 +14,29 @@
 
   tasks:
     - name: Install Privx
-      import_role:
+      ansible.builtin.import_role:
         name: install_privx
 
     - name: Configure PrivX
-      import_role:
+      ansible.builtin.import_role:
         name: configure_privx
       when: inventory_hostname == ansible_play_hosts_all[0]
 
     - name: Validate keyvault directory
-      stat:
+      ansible.builtin.stat:
         path: /opt/privx/keyvault
       register: keyvault
       when: inventory_hostname != ansible_play_hosts_all[0]
 
     - name: Backup PrivX config
-      import_role:
+      ansible.builtin.import_role:
         name: backup_privx
       when:
         - inventory_hostname == ansible_play_hosts_all[0]
         - ansible_play_hosts_all|length  > 1
 
     - name: Configure addtional PrivX servers
-      import_role:
+      ansible.builtin.import_role:
         name: configure_additional_prix
       when:
         - inventory_hostname != ansible_play_hosts_all[0]
