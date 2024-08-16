@@ -31,7 +31,7 @@
 
 *   #### Clone privx_ansible repo
     ```
-    $ git clone ttps://github.com/kushns/privx_ansible
+    $ git clone https://github.com/kushns/privx_ansible
     $ cd privx_ansible
     ```
 
