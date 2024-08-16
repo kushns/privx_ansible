@@ -5,8 +5,12 @@ collections:
     version: ">=7.0.0"
     source: https://galaxy.ansible.com
 
-
   # Install a collection from Ansible Galaxy.
   - name: community.postgresql
     version: ">=2.4.3"
+    source: https://galaxy.ansible.com
+
+  # Install a collection from Ansible Galaxy.
+  - name: community.crypto
+    version: ">=2.6.1"
     source: https://galaxy.ansible.com
